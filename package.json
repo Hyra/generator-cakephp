@@ -1,0 +1,37 @@
+{
+  "name": "generator-np-cakephp",
+  "version": "0.0.0",
+  "description": "A generator for Yeoman",
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "homepage": "https://github.com/Hyra/generator-np-cakephp",
+  "bugs": "https://github.com/Hyra/generator-np-cakephp/issues",
+  "author": {
+    "name": "Stef van den Ham",
+    "email": "stef@mindthecode.com",
+    "url": "https://github.com/Hyra"
+  },
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Hyra/generator-np-cakephp.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "yeoman-generator": "~0.12.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.10.0"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ]
+}
