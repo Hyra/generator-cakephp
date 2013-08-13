@@ -77,13 +77,14 @@ Np_cakephpGenerator.prototype.projectfiles = function projectfiles() {
 
 Np_cakephpGenerator.prototype.composer = function composer() {
   var cb = this.async();
-  var that = this;
 
-  passthru("php composer.phar install", function(err) {
-    fs.copy('app/Vendor/cakephp/cakephp/app/', 'app');
-    // passthru("Vendor/bin/cake bake project app", function() {
-      // cb();
-    // });
+  this.fetch('https://getcomposer.org/composer.phar', 'composer.phar', function (err) {
+    if (err) return done(err);
+    passthru("php composer.phar install", function() {
+      fs.copy('app/Vendor/cakephp/cakephp/app/', 'app', function() {
+        cb();
+      });
+    });
   });
 
 };
