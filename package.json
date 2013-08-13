@@ -1,7 +1,7 @@
 {
   "name": "generator-np-cakephp",
-  "version": "0.0.0",
-  "description": "A generator for Yeoman",
+  "version": "0.0.1",
+  "description": "CakePHP 2.3.9 Generator",
   "keywords": [
     "yeoman-generator"
   ],
@@ -21,7 +21,9 @@
     "test": "mocha"
   },
   "dependencies": {
-    "yeoman-generator": "~0.12.0"
+    "yeoman-generator": "~0.12.0",
+    "fs-extra": "~0.6.3",
+    "passthru": "~0.3.0"
   },
   "devDependencies": {
     "mocha": "~1.10.0"
