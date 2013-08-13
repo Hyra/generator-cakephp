@@ -3,7 +3,7 @@
 
 var assert  = require('assert');
 
-describe('np_cakephp generator', function () {
+describe('cakephp generator', function () {
   it('can be imported without blowing up', function () {
     var app = require('../app');
     assert(app !== undefined);

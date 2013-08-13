@@ -1,13 +1,13 @@
 {
-  "name": "generator-np-cakephp",
+  "name": "generator-cakephp",
   "version": "0.0.1",
   "description": "CakePHP Generator",
   "keywords": [
     "yeoman-generator",
     "cakephp"
   ],
-  "homepage": "https://github.com/Hyra/generator-np-cakephp",
-  "bugs": "https://github.com/Hyra/generator-np-cakephp/issues",
+  "homepage": "https://github.com/Hyra/generator-cakephp",
+  "bugs": "https://github.com/Hyra/generator-cakephp/issues",
   "author": {
     "name": "Stef van den Ham",
     "email": "stef@mindthecode.com",
@@ -16,7 +16,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Hyra/generator-np-cakephp.git"
+    "url": "git://github.com/Hyra/generator-cakephp.git"
   },
   "scripts": {
     "test": "mocha"

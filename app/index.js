@@ -5,7 +5,7 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var fs = require('fs-extra');
 
-var Np_cakephpGenerator = module.exports = function Np_cakephpGenerator(args, options, config) {
+var CakephpGenerator = module.exports = function CakephpGenerator(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
 
   var done = this.async();
@@ -22,7 +22,7 @@ var Np_cakephpGenerator = module.exports = function Np_cakephpGenerator(args, op
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 };
 
-util.inherits(Np_cakephpGenerator, yeoman.generators.Base);
+util.inherits(CakephpGenerator, yeoman.generators.Base);
 
 function _randomString(len, charSet) {
     charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -34,7 +34,7 @@ function _randomString(len, charSet) {
     return randomString;
 }
 
-Np_cakephpGenerator.prototype.askFor = function askFor() {
+CakephpGenerator.prototype.askFor = function askFor() {
   var cb = this.async();
 
   // have Yeoman greet the user.
@@ -68,7 +68,7 @@ Np_cakephpGenerator.prototype.askFor = function askFor() {
 
 };
 
-Np_cakephpGenerator.prototype.app = function app() {
+CakephpGenerator.prototype.app = function app() {
   this.copy('_composer.json', 'composer.json');
   this.copy('_package.json', 'package.json');
   this.copy('_bower.json', 'bower.json');
@@ -78,7 +78,7 @@ Np_cakephpGenerator.prototype.app = function app() {
   this.copy('jshintrc', '.jshintrc');
 };
 
-Np_cakephpGenerator.prototype.composer = function composer() {
+CakephpGenerator.prototype.composer = function composer() {
   var cb = this.async();
 
   this.fetch('https://getcomposer.org/composer.phar', 'composer.phar', function (err) {
@@ -92,7 +92,7 @@ Np_cakephpGenerator.prototype.composer = function composer() {
 
 };
 
-Np_cakephpGenerator.prototype.cakesetup = function cakesetup() {
+CakephpGenerator.prototype.cakesetup = function cakesetup() {
   var cb = this.async();
 
   fs.unlink('app/Controller/AppController.php');

@@ -5,14 +5,14 @@ var path    = require('path');
 var helpers = require('yeoman-generator').test;
 
 
-describe('np_cakephp generator', function () {
+describe('cakephp generator', function () {
   beforeEach(function (done) {
     helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
       if (err) {
         return done(err);
       }
 
-      this.app = helpers.createGenerator('np_cakephp:app', [
+      this.app = helpers.createGenerator('cakephp:app', [
         '../../app'
       ]);
       done();
