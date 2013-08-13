@@ -73,7 +73,6 @@ CakephpGenerator.prototype.app = function app() {
   this.copy('_package.json', 'package.json');
   this.copy('_bower.json', 'bower.json');
   this.copy('_gitignore', '.gitignore');
-  this.copy('_cake', 'cake');
   this.copy('editorconfig', '.editorconfig');
   this.copy('jshintrc', '.jshintrc');
 };
