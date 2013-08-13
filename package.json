@@ -1,9 +1,10 @@
 {
   "name": "generator-np-cakephp",
   "version": "0.0.1",
-  "description": "CakePHP 2.3.9 Generator",
+  "description": "CakePHP Generator",
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "cakephp"
   ],
   "homepage": "https://github.com/Hyra/generator-np-cakephp",
   "bugs": "https://github.com/Hyra/generator-np-cakephp/issues",
