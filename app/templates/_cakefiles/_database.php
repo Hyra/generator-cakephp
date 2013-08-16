@@ -58,16 +58,16 @@
  * For MySQL to connect via socket specify the `unix_socket` parameter instead of `host` and `port`
  */
 class DATABASE_CONFIG {
-	
-	public $default = array(		
-		'datasource' => 'Database/Mysql',
+
+	public $default = array(
+		'datasource' => 'Sledgehammer.Database/SledgehammerMysql',
 		'persistent' => false,
 		'prefix'     => '',
 		'encoding'   => 'utf8',
 	);
 
 	public $test = array(
-		'datasource' => 'Database/Mysql',
+		'datasource' => 'Sledgehammer.Database/SledgehammerMysql',
 		'persistent' => false,
 		'host'       => 'localhost',
 		'login'      => 'root',
@@ -76,14 +76,14 @@ class DATABASE_CONFIG {
 		'prefix'     => '',
 		'encoding'   => 'utf8',
 	);
-	
+
 	public function __construct() {
 		$this->default = array_merge($this->default, Configure::read('App.database'));
-		
+
 		$testDbConfig = Configure::read('App.phpunit_db');
 		if(!empty($testDbConfig)) {
 			$this->test = array_merge($this->default, Configure::read('App.phpunit_db'));
 		}
 	}
-	
+
 }
