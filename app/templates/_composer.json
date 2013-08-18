@@ -1,12 +1,11 @@
 {
-  "minimum-stability": "dev",
   "config": {
     "vendor-dir": "app/Vendor"
   },
   "require": {
-    "php": ">=5.2",
-    "cakephp/cakephp" : "2.3.8",
-    "cakephp/debug_kit": "2.2.*",
+    "php": ">=5.3",
+    "cakephp/cakephp" : "2.3.9",
+    "cakephp/debug_kit": "dev-master",
     "phpunit/phpunit" : "*",
     "cakephp-plugin/sledgehammer": "*",
     "sledgehammer/core": "*",
@@ -17,11 +16,15 @@
       "type": "package",
       "package": {
         "name" : "cakephp/cakephp",
-        "version" : "2.3.8",
+        "version" : "2.3.9",
+        "dist": {
+          "type" :"zip",
+          "url": "https://github.com/cakephp/cakephp/archive/2.3.9.zip"
+        },
         "source" : {
           "type" : "git",
           "url" : "git://github.com/cakephp/cakephp.git",
-          "reference" : "2.3.8"
+          "reference" : "2.3.9"
         },
         "bin" : ["lib/Cake/Console/cake"]
       }
@@ -29,8 +32,7 @@
   ],
   "extra": {
     "installer-paths": {
-      "app/Plugin/DebugKit": ["cakephp/debug_kit"],
-      "app/Plugin/Sledgehammer": ["cakephp-plugin/sledgehammer"]
+      "app/Plugin/{$name}/": ["type:cakephp-plugin"]
     }
   }
 }

@@ -39,32 +39,7 @@ CakephpGenerator.prototype.askFor = function askFor() {
 
   // have Yeoman greet the user.
   console.log(this.yeoman);
-
-  var prompts = [
-    {
-      name: 'db_local_db',
-      message: 'Local database DB Name',
-      type: 'string',
-      default: 'cake_dev'
-    },
-    {
-      name: 'db_local_user',
-      message: 'Local database Username',
-      default: ''
-    },
-    {
-      name: 'db_local_pass',
-      message: 'Local database Password',
-      type: 'password'
-    }
-  ];
-
-  this.prompt(prompts, function (props) {
-    this.db_local_user = props.db_local_user;
-    this.db_local_pass = props.db_local_pass;
-    this.db_local_db = props.db_local_db;
-    cb();
-  }.bind(this));
+  cb();
 
 };
 
@@ -103,7 +78,11 @@ CakephpGenerator.prototype.cakesetup = function cakesetup() {
   this.mkdir('app/Config/Environment');
   this.copy('_cakefiles/Environment/_production.php', 'app/Config/Environment/production.php');
   this.copy('_cakefiles/Environment/_staging.php', 'app/Config/Environment/staging.php');
-  this.template('_cakefiles/Environment/_local.php', 'app/Config/Environment/local.php');
+  this.copy('_cakefiles/Environment/_development.php', 'app/Config/Environment/development.php');
+
+  this.copy('_cakefiles/_autoloader.ini', 'app/Vendor/cakephp/autoloader.ini');
+  this.copy('_cakefiles/_index.php', 'index.php');
+  this.copy('_cakefiles/_htaccess', '.htaccess');
 
   this.copy('_cakefiles/_database.php', 'app/Config/database.php');
 
@@ -134,24 +113,13 @@ CakephpGenerator.prototype.cakesetup = function cakesetup() {
   fs.appendFile('app/Config/bootstrap.php', [
       "// Bootstrap for the different environments",
       "if(isset($_SERVER['APPLICATION_ENV'])) {",
-      "  if($_SERVER['APPLICATION_ENV'] == 'development') {",
-      "    $_SERVER['APPLICATION_ENV'] = 'local';",
-      "    define('ENVIRONMENT', 'development');",
-      "  }",
       "  Configure::load('Environment/'.$_SERVER['APPLICATION_ENV']);",
       "} else {",
-      "  if(isset($_SERVER['SHELL'])) {",
-      "    Configure::load('Environment/local');",
-      "  } else {",
-      "    Configure::load('Environment/production');",
-      "  }",
+      "  Configure::load('Environment/production');",
       "}",
       "",
       "// Load all Plugins",
-      "CakePlugin::loadAll();",
-      "",
-      "// Load composer autoload.",
-      "require APP . '/Vendor/autoload.php';",
+      "CakePlugin::loadAll(array('Sledgehammer' => array('bootstrap' => true)));", // Also includes composer/autoload.php.
       "",
       "// Remove and re-prepend CakePHP's autoloader as composer thinks it is the most important.",
       "// See https://github.com/composer/composer/commit/c80cb76b9b5082ecc3e5b53b1050f76bb27b127b",
@@ -159,6 +127,17 @@ CakephpGenerator.prototype.cakesetup = function cakesetup() {
       "spl_autoload_register(array('App', 'load'), true, true);"
     ].join('\n'), 'utf8', function (err) {
       if (err) return console.log(err);
+  });
+
+  fs.readFile('app/View/Layouts/default.ctp', 'utf8', function (err,data) {
+    if (err) return console.log(err);
+
+    var result = data.replace("$this->element('sql_dump');", "$this->element('statusbar', array(), array('plugin' => 'Sledgehammer'));");
+
+    fs.writeFile('app/View/Layouts/default.ctp', result, 'utf8', function (err) {
+      if (err) return console.log(err);
+    });
+
   });
 
   cb();

@@ -19,8 +19,8 @@ These environmental config files can be found in `app/Config/Environment/` and a
 - Install the generator: `npm install -g generator-cakephp`
 - Run: `yo cakephp`
 - Set the following Environment Variable:
-  
-  SetEnv APPLICATION_ENV local
+
+  SetEnv APPLICATION_ENV development
 
 You can set this where you want. Your .htaccess, httpd.conf or within your vhost.
 
