@@ -86,16 +86,6 @@ CakephpGenerator.prototype.cakesetup = function cakesetup() {
 
   this.copy('_cakefiles/_database.php', 'app/Config/database.php');
 
-  fs.readFile('app/webroot/index.php', 'utf8', function (err,data) {
-    if (err) return console.log(err);
-
-    var result = data.replace('//define(\'CAKE_CORE_INCLUDE_PATH\', ROOT . DS . \'lib\');', 'define(\'CAKE_CORE_INCLUDE_PATH\',  ROOT . DS . APP_DIR . \'/Vendor/cakephp/cakephp/lib\');');
-
-    fs.writeFile('app/webroot/index.php', result, 'utf8', function (err) {
-      if (err) return console.log(err);
-    });
-
-  });
 
   fs.readFile('app/Config/core.php', 'utf8', function (err,data) {
     if (err) return console.log(err);
